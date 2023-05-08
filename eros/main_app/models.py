@@ -1,12 +1,13 @@
 from django.db import models
 from django.urls import reverse
-from datetime import date
-from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
+# from datetime import date
+# from django.contrib.auth.models import User
 
 class Profile(models.Model):
     name = models.CharField(max_length = 50)
     pronouns = models.CharField(max_length = 50)
-    age = models.IntegerField(min = 18, max = 99)
+    age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(99)])
     height_feet = models.CharField(
         max_length = 1,
         choices = (
@@ -22,7 +23,7 @@ class Profile(models.Model):
         default = '0'
     )
     zodiac_sign = models.CharField(
-        max_length = 1,
+        max_length = 11,
         choices = (
         ('Aries', 'Aries'), ('Taurus', 'Taurus'), ('Gemini', 'Gemini'), ('Cancer', 'Cancer'), ('Leo', 'Leo'), ('Virgo', 'Virgo'), ('Libra', 'Libra'), ('Scorpio', 'Scorpio'), ('Sagittarius', 'Sagittarius'), ('Capricorn', 'Capricorn'), ('Aquarius', 'Aquarius'), ('Pisces', 'Pisces'),
         ),
