@@ -45,5 +45,5 @@ class DateIdeas(models.Model):
     def __str__(self):
         return self.name
     
-    def get_absolute_url(self):
-        return reverse('date_ideas_details')
+    # def get_absolute_url(self):
+    #     return reverse('date_ideas_details')
