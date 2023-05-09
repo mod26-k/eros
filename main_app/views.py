@@ -40,6 +40,14 @@ def users(request):
 class DateIdeaList(LoginRequiredMixin, ListView):
    model = DateIdeas
 
+def dateideas_detail(request, dateidea_id):
+   dateidea = DateIdeas.objects.get(id=dateidea_id)
+   return render(request, 'main_app/dateideas_detail.html', {'dateidea': dateidea})
+
+class DateIdeaCreate(LoginRequiredMixin, CreateView):
+   model = DateIdeas
+   fields = '__all__'
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

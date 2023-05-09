@@ -3,8 +3,10 @@ from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from datetime import date
 from django.contrib.auth.models import User
+from datetime import datetime
 
 class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 50)
     pronouns = models.CharField(max_length = 50)
     age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(99)])
@@ -81,7 +83,9 @@ class Profile(models.Model):
 
 
 class DateIdeas(models.Model):
-    location = models.CharField(max_length=50)
+    restaurant = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
     meal = models.CharField(
         choices = (
             ('Brunch', 'Brunch'), ('Lunch', 'Lunch'), (
@@ -89,8 +93,10 @@ class DateIdeas(models.Model):
             ),
             default = 'Dinner',
         )
+    date = models.DateTimeField(default = datetime.now)
     user = models.ForeignKey(
-        User, 
+        Profile, 
+        # User,
         on_delete=models.CASCADE,
         null = True
         )
