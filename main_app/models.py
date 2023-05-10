@@ -1,22 +1,22 @@
 from django.db import models
+from django import forms
 from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from datetime import date
 from django.contrib.auth.models import User
-from datetime import datetime
+# from datetime import datetime
 
 class Profile(models.Model):
+    # pfp = 
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 50)
     pronouns = models.CharField(max_length = 50)
     age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(99)])
     location = models.CharField(
         max_length = 50,
-        # default = 'Not Disclosed'
         )
     occupation = models.CharField(
         max_length = 50,
-        # default = 'Not Disclosed',
         )
     relationship_status = models.CharField(
         choices = (
@@ -80,6 +80,9 @@ class Profile(models.Model):
         blank=True
     )
 
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
+
 
 
 class DateIdeas(models.Model):
@@ -93,14 +96,21 @@ class DateIdeas(models.Model):
             ),
             default = 'Dinner',
         )
-    date = models.DateTimeField(default = datetime.now)
+    date = models.DateTimeField()
     user = models.ForeignKey(
-        Profile, 
-        # User,
-        on_delete=models.CASCADE,
-        null = True
+        User,
+        on_delete=models.CASCADE
         )
     
+
+class DateIdeasForm(forms.ModelForm):
+    class Meta:
+        model = DateIdeas
+        fields = ['restaurant', 'city', 'state', 'meal', 'date']
+        # widgets = {
+        #     'meal': forms.Select(choices=DateIdeas.MEAL_CHOICES)
+        # }
+
     # def __str__(self):
     #     return self.name
     

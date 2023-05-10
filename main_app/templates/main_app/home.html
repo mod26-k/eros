@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>home page</h1>
-<hr>
-<p>see your likes and nopes here... eventually</p>
-<footer>All Rights Reserved, &copy; 2023 Eros</footer>
+<h1>Welcome, {{ request.user.profile.name }}</h1>
+<p>Pronouns: {{ request.user.profile.pronouns }}</p>
+<p>Age: {{ request.user.profile.age }}</p>
+<p>Location: {{ request.user.profile.location }}</p>
+<p>Occupation: {{ request.user.profile.occupation }}</p>
+<p>Relationship Status: {{ request.user.profile.relationship_status }}</p>
+<p>Height: {{ request.user.profile.height_feet }}'{{ request.user.profile.height_inches }}"</p>
+<p>Zodiac Sign: {{ request.user.profile.zodiac_sign }}</p>
+<p>Smoke: {{ request.user.profile.smoke }}</p>
+<p>Drink: {{ request.user.profile.drink }}</p>
+<p>Children: {{ request.user.profile.children }}</p>
+<p>Religion: {{ request.user.profile.religion }}</p>
+<p>Dealbreaker: {{ request.user.profile.dealbreaker }}</p>
+<p>Fun Date Idea: {{ request.user.profile.fun_date_idea }}</p>
 
 {% endblock %}

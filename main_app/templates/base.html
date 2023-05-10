@@ -24,9 +24,8 @@
         </ul>
         <ul class="right">
           {% if user.is_authenticated %}
-            <li><a href="{% url 'users_index' %}">Find a Match</a></li>
+            <li><a href="{% url 'users_list' %}">Find a Match</a></li>
             <li><a href="{% url 'dateideas_list' %}">Date Ideas</a></li>
-            <li><a href="{% url 'myprofile' %}">Profile</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li><a href="{% url 'about' %}">About</a></li>
@@ -43,7 +42,12 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2023 Eros &nbsp;</div>
+      <ul>
+        <li><a href="{% url 'about' %}">Home</a></li>
+        <li><a href="{% url 'users_list' %}">Find A Match</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
+      </ul>
   </footer>
 </body>
 </html>
