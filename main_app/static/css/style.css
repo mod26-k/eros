@@ -1,43 +1,131 @@
-/* .landing-page-body {
-  background-color: red;
-} */
-
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background-color: white;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
   }
 
 h1 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Rubik Mono One', sans-serif;
+  color: red;
+  text-align: left;
 }
   
+.btn {
+  background-color: red;
+  color: white;
+  width: 100px;
+  justify-content: center;
+  margin: 0 auto;
+}
 
+.logo {
+  height: 80px;
+  width: auto;
+  margin: 0 auto;
+}
   
 main {
     flex: 1 0 auto;
   }
   
-/* footer.page-footer {
-    padding-top: 0;
-    text-align: left !important;
+footer.page-footer {
+    padding-top: 200px;
+    text-align: center;
+    background-color: white;
   }
 
-footer.page-footer ul {
-    display: inline-block !important;
-    margin: 0 10px;
-    padding: 0;
-  }
+footer.page-footer a {
+  color: black;
+}
 
 footer.page-footer li {
   display: inline-block !important;
   margin: 0 10px;
   padding: 0;
-} */
+}
 
-img {
-  height: 100px !important;
-  width: auto !important;
-  margin-bottom: 1rem;
+
+
+/* LANDING PAGE */
+.landing-page {
+  background-color: red;
+}
+
+image {
+  /* height: 100px;
+  width: 150px; */
+  margin-top: 10px;
+  background-size: cover;
+}
+
+.caret-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.fa {
+  font-size: 80px;
+}
+
+.empty-block {
+  height: 600px;
+  width: auto;
+}
+
+.landing-page-header {
+  font-family: 'Rubik Mono One', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+#landing-page-btn {
+  background-color: white;
+  color: red;
+  width: 150px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+footer.landing-page-footer {
+  padding-top: 200px;
+  text-align: center;
+  background-color: red;
+}
+
+footer.landing-page-footer a {
+color: white;
+}
+
+footer.landing-page-footer li {
+display: inline-block !important;
+margin: 0 10px;
+padding: 0;
+}
+
+/* Display cards (date ideas, users) pages */
+a {
+  color: black;
+}
+
+.card-title {
+  color: red;
+}
+
+p {
+  color: black;
+}
+
+
+/* Details Pages */
+.date-details {
+  margin-top: 80px;
+  text-align: left;
+}
+
+.date-idea-user-link {
+  color: red;
 }

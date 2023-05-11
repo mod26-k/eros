@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>date idea detail</h1>
+<div class="date-details">
+<h1>{{ dateidea.restaurant }}</h1>
+<h4>Where: {{ dateidea.city }}, {{ dateidea.state }}</h4>
+<h4>When: {{ dateidea.meal }} on {{ dateidea.date }}</h4>
+<h4>With: <a href="{% url 'user_detail' pk=user.pk %}" class="date-idea-user-link">{{ user.profile.name }}</a></h4>
+</div>
+<p>add to your dates?</p>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col s6 col-offset-3">
         <div class="card">
             <div class="card-content">
@@ -15,6 +21,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock %}
