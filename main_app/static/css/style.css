@@ -2,7 +2,7 @@
 #create-profile-btn {
   background-color: red;
   color: white;
-  width: 150px;
+  width: 150px !important;
 }
 
 body {

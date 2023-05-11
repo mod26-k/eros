@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <h1>Add Profile</h1>
 
@@ -12,6 +14,29 @@
 </table>
     <input type="submit" value="Create Profile" class="btn" id="create-profile-btn">
 </form>
+
+<script>
+const relationshipEl = document.querySelector('#id_relationship_status');
+M.FormSelect.init(relationshipEl);
+
+const heightFeetEl = document.querySelector('#id_height_feet');
+M.FormSelect.init(heightFeetEl);
+
+const heightInchesEl = document.querySelector('#id_height_inches');
+M.FormSelect.init(heightInchesEl);
+
+const zodiacSignEl = document.querySelector('#id_zodiac_sign');
+M.FormSelect.init(zodiacSignEl);
+
+const smokeEl = document.querySelector('#id_smoke');
+M.FormSelect.init(smokeEl);
+
+const drinkEl = document.querySelector('#id_drink');
+M.FormSelect.init(drinkEl);
+
+const childrenEl = document.querySelector('#id_children');
+M.FormSelect.init(childrenEl);
+</script>
 
 {% endblock %}
 
