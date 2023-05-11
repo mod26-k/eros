@@ -57,7 +57,7 @@ footer.page-footer li {
 
 /* LANDING PAGE */
 .landing-page {
-  background-color: red;
+  background-color: red !important;
 }
 
 image {
