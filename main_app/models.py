@@ -96,20 +96,23 @@ class DateIdeas(models.Model):
             ),
             default = 'Dinner',
         )
-    date = models.DateTimeField()
+    date = models.DateField()
+    # time = models.TimeField(null=True, blank=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE
         )
+    def get_absolute_url(self):
+        return reverse('dateideas_list', )
     
 
-class DateIdeasForm(forms.ModelForm):
-    class Meta:
-        model = DateIdeas
-        fields = ['restaurant', 'city', 'state', 'meal', 'date']
-        # widgets = {
-        #     'meal': forms.Select(choices=DateIdeas.MEAL_CHOICES)
-        # }
+# class DateIdeasForm(forms.ModelForm):
+#     class Meta:
+#         model = DateIdeas
+#         fields = ['restaurant', 'city', 'state', 'meal', 'date']
+#         widgets = {
+#             'meal': forms.Select(choices=DateIdeas.MEAL_CHOICES)
+#         }
 
     # def __str__(self):
     #     return self.name

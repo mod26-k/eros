@@ -1,7 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Welcome, {{ profile.name }}</h1>
+<h1>It's {{ user.profile.name }}'s page</h1>
 
+<div class="row">
+    <div class="col s6 col-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <h4>profile pic</h4> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s6 col-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <p>Pronouns: {{ user.profile.pronouns }}</p>
+                <p>Age: {{ user.profile.age }}</p>
+                <p>Location: {{ user.profile.location }}</p>
+                <p>Occupation: {{ user.profile.occupation }}</p>
+                <p>Relationship Status: {{ user.profile.relationship_status }}</p>
+                <p>Height: {{ user.profile.height_feet }}'{{ user.profile.height_inches }}"</p>
+                <p>Zodiac Sign: {{ user.profile.zodiac_sign }}</p>
+                <p>Smoke: {{ user.profile.smoke }}</p>
+                <p>Drink: {{ user.profile.drink }}</p>
+                <p>Children: {{ user.profile.children }}</p>
+                <p>Religion: {{ user.profile.religion }}</p>
+                <p>Dealbreaker: {{ user.profile.dealbreaker }}</p>
+                <p>Fun Date Idea: {{ user.profile.fun_date_idea }}</p>
+            </div>
+            <div class="'card-action">
+                <p>update</p>
+                <p>delete?</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s6 col-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <h4>{{ user.profile.name }}'s Date Ideas</h4> 
+            </div>
+            <div class="card-action">
+                <p>add to liked date ideas</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

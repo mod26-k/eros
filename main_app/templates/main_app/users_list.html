@@ -3,15 +3,18 @@
 
 <h1>Active Users</h1>
 
-{% for user in User.objects.all %}
-  <!-- <a href="{% url 'users_detail' user.id %}"> -->
+{% for user in all_users %}
     <div class="card">
+      <a href="{% url 'user_detail' pk=user.pk %}">
         <div class="card-content">
             <span class="card-title">{{ user.profile.name }}</span>
-        
+            <p>{{ user.profile.pronouns }}</p>
+            <p>{{ user.profile.age }}</p>
+            <p>{{ user.profile.location }}</p>
         </div>
+      </a>
     </div>
-  <!-- </a> -->
+
 {% endfor %}
 
 {% endblock %}
