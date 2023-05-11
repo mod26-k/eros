@@ -28,8 +28,12 @@ class DateIdeas(models.Model):
         return reverse('dateideas_list', )
     
 
+class Pfp(models.Model):
+    url = models.CharField(max_length = 200)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+
+
 class Profile(models.Model):
-    # pfp = 
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     dateideas = models.ManyToManyField(DateIdeas)
     name = models.CharField(max_length = 50)
