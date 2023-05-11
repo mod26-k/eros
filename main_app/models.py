@@ -6,9 +6,32 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 # from datetime import datetime
 
+
+class DateIdeas(models.Model):
+    restaurant = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    meal = models.CharField(
+        choices = (
+            ('Brunch', 'Brunch'), ('Lunch', 'Lunch'), (
+        'Dinner', 'Dinner')
+            ),
+            default = 'Dinner',
+        )
+    date = models.DateField()
+    # time = models.TimeField(null=True, blank=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+        )
+    def get_absolute_url(self):
+        return reverse('dateideas_list', )
+    
+
 class Profile(models.Model):
     # pfp = 
     user = models.OneToOneField(User, on_delete = models.CASCADE)
+    dateideas = models.ManyToManyField(DateIdeas)
     name = models.CharField(max_length = 50)
     pronouns = models.CharField(max_length = 50)
     age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(99)])
@@ -83,39 +106,3 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Profile"
 
-
-
-class DateIdeas(models.Model):
-    restaurant = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    meal = models.CharField(
-        choices = (
-            ('Brunch', 'Brunch'), ('Lunch', 'Lunch'), (
-        'Dinner', 'Dinner')
-            ),
-            default = 'Dinner',
-        )
-    date = models.DateField()
-    # time = models.TimeField(null=True, blank=True)
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-        )
-    def get_absolute_url(self):
-        return reverse('dateideas_list', )
-    
-
-# class DateIdeasForm(forms.ModelForm):
-#     class Meta:
-#         model = DateIdeas
-#         fields = ['restaurant', 'city', 'state', 'meal', 'date']
-#         widgets = {
-#             'meal': forms.Select(choices=DateIdeas.MEAL_CHOICES)
-#         }
-
-    # def __str__(self):
-    #     return self.name
-    
-    # def get_absolute_url(self):
-    #     return reverse('date_ideas_details')

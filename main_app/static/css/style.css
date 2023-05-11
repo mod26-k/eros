@@ -1,3 +1,10 @@
+/* Forms */
+#create-profile-btn {
+  background-color: red;
+  color: white;
+  width: 150px;
+}
+
 body {
   display: flex;
   min-height: 100vh;
