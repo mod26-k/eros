@@ -58,6 +58,15 @@ def create_profile(request):
 # User profile and other users list and details
 @login_required
 def home(request):
+    # dateideas = DateIdeas.objects.filter(user=request.user)
+    # context = {'dateideas': dateideas}
+    # print(request.user.dateideas)
+    # user = User.objects.get(id)
+    # id_list = user.dateideas.all().values_list('id')
+    # created_dates = DateIdeas.objects.exclude(id__in=id_list)
+    # return render(request, 'main_app/home.html', {
+    #    'dateideas': created_dates
+    # })
     return render(request, 'main_app/home.html')
 
 @login_required
@@ -88,7 +97,7 @@ def add_photo(request, user_id):
         except Exception as e:
             print('An error occurred uploading file to S3')
             print(e)
-    return redirect('home', user_id = user_id)
+    return redirect('home')
     
 class UserUpdate(LoginRequiredMixin, UpdateView):
    model = Profile
@@ -118,12 +127,15 @@ def dateideas_detail(request, dateidea_id):
 class DateIdeaCreate(LoginRequiredMixin, CreateView):
    model = DateIdeas
    fields = ['restaurant', 'city', 'state', 'meal', 'date']
-#    success_url = reverse_lazy('date-ideas')
+   success_url = reverse_lazy('dateideas_list')
    template_name = 'main_app/dateideas_form.html'
 
    def form_valid(self, form):
       form.instance.user = self.request.user
       return super().form_valid(form)
+   
+   def get_success_url(self):
+      return reverse_lazy('dateideas_list')
 
 class DateIdeaUpdate(LoginRequiredMixin, UpdateView):
    model = DateIdeas

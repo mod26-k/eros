@@ -1,5 +1,5 @@
 # eros
-- [Trello](https://trello.com/invite/b/8RvSJHk7/ATTI0c8709e2880d8886c640cae26546c38623E4EE1B/too-late)
+- [Trello](https://trello.com/invite/b/8RvSJHk7/ATTI0c8709e2880d8886c640cae26546c38623E4EE1B/eros)
 
 - [Wireframe](https://whimsical.com/project-4-UwTqjgYaoEz7P9aVjdxSc1)
 

@@ -19,13 +19,12 @@ class DateIdeas(models.Model):
             default = 'Dinner',
         )
     date = models.DateField()
-    # time = models.TimeField(null=True, blank=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE
         )
     def get_absolute_url(self):
-        return reverse('dateideas_list', args=[str(self.user.pk)])
+        return reverse('dateideas_list')
     
 
 class Pfp(models.Model):

@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
 from . import views
 
 urlpatterns = [
@@ -22,6 +23,7 @@ urlpatterns = [
     path('add-date-idea/', views.DateIdeaCreate.as_view(), name='dateidea_form'),
     path('date-ideas/<int:pk>/update/', views.DateIdeaUpdate.as_view(), name='dateideas_update'),
     path('date-ideas/<int:pk>/delete/', views.DateIdeaDelete.as_view(), name='dateideas_delete'),
+
 ]
 
 

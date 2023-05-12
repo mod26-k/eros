@@ -11,7 +11,7 @@
             <button type="submit" class="btn">Upload Photo</button>
         </form>
         {% for photo in user.pfp_set.all %}
-            <img class="responsive-img card-panel" src="{{pfp.url}}">
+            <img class="responsive-img card-panel" src="{{photo.url}}">
         {% endfor %}
 </div>
 
@@ -35,38 +35,41 @@
                 <p>Dealbreaker: {{ request.user.profile.dealbreaker }}</p>
                 <p>Fun Date Idea: {{ request.user.profile.fun_date_idea }}</p>
             </div>
-            <div class="'card-action">
+            <!-- <div class="'card-action">
                 <p>update</p>
                 <p>delete?</p>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 
 
-<div class="row">
+<!-- <div class="row">
     <div class="col s6 col-offset-3">
-        <div class="card">
-            <div class="card-content">
-                <h4>My Date Ideas</h4>
-                <ul>
-                    {% for dateidea in profile.dateideas.all %}
-                    <li>hi</li>
-                    {% endfor %}
-                </ul> 
-            </div>
-            <div class="'card-action">
-                <p>remove? for each</p>
-            </div>
+        <h4>{{ request.user.profile.name }}'s Date Ideas</h4>
+         {% if request.user.profile.dateideas.count %}
+            {% for dateidea in request.user.profile.dateideas.all %}
+                <div class="card">
+                    <div class="card-content">
+                        {{ dateidea.restaurant }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>No Date Ideas Yet</h4>
+        {% endif %}
+        <div class="'card-action">
+            <p>remove? for each</p>
         </div>
     </div>
-</div>
+</div> -->
+        
 
-<div class="row">
+<!-- <div class="row">
     <div class="col s6 col-offset-3">
         <div class="card">
             <div class="card-content">
-                <h4>Date Ideas I Like</h4> 
+                <h4>Date Ideas {{ request.user.profile.name }} Likes</h4> 
             </div>
             <div class="'card-action">
                 <p>remove? for each</p>
@@ -78,7 +81,7 @@
 <div class="card-action">
     <a href="{% url 'user_update' user.pk %}">Edit</a>
     <a href="{% url 'user_delete' user.pk %}">Delete</a>
-</div>
+</div> -->
 
 
 {% endblock %}
