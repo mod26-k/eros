@@ -31,6 +31,15 @@ class Pfp(models.Model):
     url = models.CharField(max_length = 200)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
 
+class PotentialMatch(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    potential_match = models.ForeignKey(
+        User, 
+        related_name='potential_matches', 
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+        )
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)

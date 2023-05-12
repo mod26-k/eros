@@ -31,25 +31,20 @@
                 <p>Dealbreaker: {{ user.profile.dealbreaker }}</p>
                 <p>Fun Date Idea: {{ user.profile.fun_date_idea }}</p>
             </div>
-            <div class="'card-action">
+            <!-- <div class="'card-action">
                 <p>update</p>
                 <p>delete?</p>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col s6 col-offset-3">
-        <div class="card">
-            <div class="card-content">
-                <h4>{{ user.profile.name }}'s Date Ideas</h4> 
-            </div>
-            <div class="card-action">
-                <p>add to liked date ideas</p>
-            </div>
-        </div>
-    </div>
-</div>
-
+{% if request.user.profile == user.profile %}
+        <p>This is your profile</p>
+    {% else %}
+        <form action="{% url 'add_to_matches' pk=user.profile.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Add to Matches</button>
+        </form>
+{% endif %}
 {% endblock %}

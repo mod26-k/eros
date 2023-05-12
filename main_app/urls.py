@@ -17,6 +17,7 @@ urlpatterns = [
     path('users/<int:pk>', views.UserDetail.as_view(), name='user_detail'),
     path('user/<int:pk>/update/', views.UserUpdate.as_view(), name='user_update'),
     path('user/<int:pk>/delete/', views.UserDelete.as_view(), name='user_delete'),
+    path('add-to-matches/<int:pk>/', views.add_to_matches, name='add_to_matches'),
 
     path('date-ideas/', views.DateIdeaList.as_view(), name='dateideas_list'),
     path('date-ideas/<int:dateidea_id>', views.dateideas_detail, name='dateidea_detail'),

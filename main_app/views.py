@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, DateIdeas, User, Pfp
+from .models import Profile, DateIdeas, User, Pfp, PotentialMatch
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
@@ -55,7 +55,7 @@ def create_profile(request):
     return render(request, 'create_profile.html', {'profile_form': profile_form})
 
 
-# User profile and other users list and details
+# homepage / self
 @login_required
 def home(request):
     # dateideas = DateIdeas.objects.filter(user=request.user)
@@ -69,20 +69,6 @@ def home(request):
     # })
     return render(request, 'main_app/home.html')
 
-@login_required
-def users(request):
-    # all_users = Profile.objects.all()
-    all_users = User.objects.all()
-    return render(request, 'main_app/users_list.html', {'all_users': all_users})
-
-class UserDetail(LoginRequiredMixin, DetailView):
-   model = Profile
-   template_name = 'main_app/user_detail.html'
-
-   def get_object(self):
-        user = get_object_or_404(User, pk=self.kwargs['pk'])
-        return user
-   
 @login_required
 def add_photo(request, user_id):
     photo_file = request.FILES.get('photo-file', None)
@@ -98,7 +84,7 @@ def add_photo(request, user_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('home')
-    
+
 class UserUpdate(LoginRequiredMixin, UpdateView):
    model = Profile
    template_name = 'update_profile.html'
@@ -107,7 +93,6 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
    def get_object(self, queryset = None):
       return self.request.user.profile
 
-
 class UserDelete(LoginRequiredMixin, DeleteView):
    model = User
    template_name = 'main_app/user_confirm_delete.html'
@@ -115,6 +100,32 @@ class UserDelete(LoginRequiredMixin, DeleteView):
 
    def get_object(self, queryset = None):
     return self.request.user
+
+# Users
+@login_required
+def users(request):
+    # all_users = Profile.objects.all()
+    all_users = User.objects.all()
+    return render(request, 'main_app/users_list.html', {'all_users': all_users})
+
+class UserDetail(LoginRequiredMixin, DetailView):
+   model = Profile
+   template_name = 'main_app/user_detail.html'
+
+   def get_object(self):
+        user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return user
+
+# "likes" or potential matches
+def add_to_matches(request, pk):
+   match_profile= get_object_or_404(Profile, pk=pk)
+   PotentialMatch.objects.create(user = request.user, potential_match = match_profile.user)
+   return render(request, 'main_app/home.html')
+
+def view_potential_matches(request):
+    potential_matches = request.user.potentialmatch_set.all()
+    context = {'potential_matches': potential_matches}
+    return render(request, 'main_app/home.html', context)
 
 #Date ideas list and details
 class DateIdeaList(LoginRequiredMixin, ListView):

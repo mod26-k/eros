@@ -65,23 +65,23 @@
 </div> -->
         
 
-<!-- <div class="row">
+<div class="row">
     <div class="col s6 col-offset-3">
         <div class="card">
             <div class="card-content">
-                <h4>Date Ideas {{ request.user.profile.name }} Likes</h4> 
-            </div>
-            <div class="'card-action">
-                <p>remove? for each</p>
+                <h4>Potential Matches</h4> 
+                {% for match in potential_matches %}
+                    {{ match }}
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 
 <div class="card-action">
-    <a href="{% url 'user_update' user.pk %}">Edit</a>
+    <!-- <a href="{% url 'user_update' user.pk %}">Edit</a> -->
     <a href="{% url 'user_delete' user.pk %}">Delete</a>
-</div> -->
+</div>
 
 
 {% endblock %}
