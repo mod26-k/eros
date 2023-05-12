@@ -3,15 +3,18 @@
 
 <h1>Welcome, {{ request.user.profile.name }}</h1>
 
-<div class="row">
-    <div class="col s6 col-offset-3">
-        <div class="card">
-            <div class="card-content">
-                <h4>profile pic</h4> 
-            </div>
-        </div>
-    </div>
+<div class = "card-panel">
+        <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+            {% csrf_token %}
+            <input type="file" name="photo-file">
+            <br><br>
+            <button type="submit" class="btn">Upload Photo</button>
+        </form>
+        {% for photo in user.pfp_set.all %}
+            <img class="responsive-img card-panel" src="{{pfp.url}}">
+        {% endfor %}
 </div>
+
 
 <div class="row">
     <div class="col s6 col-offset-3">
@@ -45,7 +48,12 @@
     <div class="col s6 col-offset-3">
         <div class="card">
             <div class="card-content">
-                <h4>My Likes</h4> 
+                <h4>My Date Ideas</h4>
+                <ul>
+                    {% for dateidea in profile.dateideas.all %}
+                    <li>hi</li>
+                    {% endfor %}
+                </ul> 
             </div>
             <div class="'card-action">
                 <p>remove? for each</p>
@@ -65,6 +73,11 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="card-action">
+    <a href="{% url 'user_update' user.pk %}">Edit</a>
+    <a href="{% url 'user_delete' user.pk %}">Delete</a>
 </div>
 
 

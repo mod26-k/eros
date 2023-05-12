@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, DateIdeas, User
+from .models import Profile, DateIdeas, User, Pfp
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
@@ -8,6 +8,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import ProfileCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+import boto3
+import uuid
+import os
 
 
 # Views accessible to anyone
@@ -70,7 +73,39 @@ class UserDetail(LoginRequiredMixin, DetailView):
    def get_object(self):
         user = get_object_or_404(User, pk=self.kwargs['pk'])
         return user
+   
+@login_required
+def add_photo(request, user_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Pfp.objects.create(url = url, user_id = user_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('home', user_id = user_id)
+    
+class UserUpdate(LoginRequiredMixin, UpdateView):
+   model = Profile
+   template_name = 'update_profile.html'
+   fields = '__all__'
 
+   def get_object(self, queryset = None):
+      return self.request.user.profile
+
+
+class UserDelete(LoginRequiredMixin, DeleteView):
+   model = User
+   template_name = 'main_app/user_confirm_delete.html'
+   success_url = '/accounts/signup/'
+
+   def get_object(self, queryset = None):
+    return self.request.user
 
 #Date ideas list and details
 class DateIdeaList(LoginRequiredMixin, ListView):
@@ -89,4 +124,12 @@ class DateIdeaCreate(LoginRequiredMixin, CreateView):
    def form_valid(self, form):
       form.instance.user = self.request.user
       return super().form_valid(form)
-   
+
+class DateIdeaUpdate(LoginRequiredMixin, UpdateView):
+   model = DateIdeas
+   fields = ['restaurant', 'city', 'state', 'meal', 'date']
+
+class DateIdeaDelete(LoginRequiredMixin, DeleteView):
+   model = DateIdeas
+   template_name = 'main_app/dateideas_confirm_delete.html'
+   success_url = '/date-ideas'

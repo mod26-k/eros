@@ -4,6 +4,12 @@
   color: white;
   width: 150px !important;
 }
+/* 
+form input[type="submit"]#confirm-delete-btn {
+  background-color: red;
+  color: white;
+  width: 150px !important;
+} */
 
 body {
   display: flex;

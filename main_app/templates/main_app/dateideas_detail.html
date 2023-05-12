@@ -5,22 +5,14 @@
 <h1>{{ dateidea.restaurant }}</h1>
 <h4>Where: {{ dateidea.city }}, {{ dateidea.state }}</h4>
 <h4>When: {{ dateidea.meal }} on {{ dateidea.date }}</h4>
-<h4>With: <a href="{% url 'user_detail' pk=user.pk %}" class="date-idea-user-link">{{ user.profile.name }}</a></h4>
+<h4>With: <a href="{% url 'user_detail' dateidea.user.pk %}" class="date-idea-user-link">{{ dateidea.user.profile.name }}</a></h4>
 </div>
 <p>add to your dates?</p>
-
-<!-- <div class="row">
-    <div class="col s6 col-offset-3">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ dateidea.restaurant }}</span>
-                <p>{{ dateidea.city }}, {{ dateidea.state }}</p>
-                <p>{{ dateidea.meal }}</p>
-                <p>{{ dateidea.date }}</p>
-                <p>{{ user.profile.name }}</p>
-            </div>
-        </div>
-    </div>
-</div> -->
+{% if request.user == dateidea.user %}
+<div class="card-action">
+    <a href="{% url 'dateideas_update' dateidea.pk %}">Edit</a>
+    <a href="{% url 'dateideas_delete' dateidea.pk %}">Delete</a>
+</div>
+{% endif %}
 
 {% endblock %}

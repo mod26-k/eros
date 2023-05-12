@@ -25,7 +25,7 @@ class DateIdeas(models.Model):
         on_delete=models.CASCADE
         )
     def get_absolute_url(self):
-        return reverse('dateideas_list', )
+        return reverse('dateideas_list', args=[str(self.user.pk)])
     
 
 class Pfp(models.Model):
