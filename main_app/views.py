@@ -58,16 +58,11 @@ def create_profile(request):
 # homepage / self
 @login_required
 def home(request):
-    # dateideas = DateIdeas.objects.filter(user=request.user)
-    # context = {'dateideas': dateideas}
-    # print(request.user.dateideas)
-    # user = User.objects.get(id)
-    # id_list = user.dateideas.all().values_list('id')
-    # created_dates = DateIdeas.objects.exclude(id__in=id_list)
-    # return render(request, 'main_app/home.html', {
-    #    'dateideas': created_dates
-    # })
-    return render(request, 'main_app/home.html')
+    potential_matches = PotentialMatch.objects.filter(user=request.user)
+    context = {'potential_matches': potential_matches}
+    return render(request, 'main_app/home.html', context)
+
+
 
 @login_required
 def add_photo(request, user_id):
@@ -122,10 +117,9 @@ def add_to_matches(request, pk):
    PotentialMatch.objects.create(user = request.user, potential_match = match_profile.user)
    return render(request, 'main_app/home.html')
 
-def view_potential_matches(request):
-    potential_matches = request.user.potentialmatch_set.all()
-    context = {'potential_matches': potential_matches}
-    return render(request, 'main_app/home.html', context)
+# def view_potential_matches(request):
+#     potentialmatches = PotentialMatch.objects.all()
+#     return render(request, 'main_app/home.html', {'potentialmatches': potentialmatches})
 
 #Date ideas list and details
 class DateIdeaList(LoginRequiredMixin, ListView):

@@ -40,6 +40,8 @@ class PotentialMatch(models.Model):
         null=True,
         blank=True
         )
+    def __str__(self):
+        return self.potential_match.username
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
