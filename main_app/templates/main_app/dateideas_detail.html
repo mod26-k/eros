@@ -7,7 +7,7 @@
 <h4>When: {{ dateidea.meal }} on {{ dateidea.date }}</h4>
 <h4>With: <a href="{% url 'user_detail' dateidea.user.pk %}" class="date-idea-user-link">{{ dateidea.user.profile.name }}</a></h4>
 </div>
-<p>add to your dates?</p>
+
 {% if request.user == dateidea.user %}
 <div class="card-action">
     <a href="{% url 'dateideas_update' dateidea.pk %}">Edit</a>

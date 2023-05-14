@@ -62,8 +62,6 @@ def home(request):
     context = {'potential_matches': potential_matches}
     return render(request, 'main_app/home.html', context)
 
-
-
 @login_required
 def add_photo(request, user_id):
     photo_file = request.FILES.get('photo-file', None)
@@ -115,11 +113,7 @@ class UserDetail(LoginRequiredMixin, DetailView):
 def add_to_matches(request, pk):
    match_profile= get_object_or_404(Profile, pk=pk)
    PotentialMatch.objects.create(user = request.user, potential_match = match_profile.user)
-   return render(request, 'main_app/home.html')
-
-# def view_potential_matches(request):
-#     potentialmatches = PotentialMatch.objects.all()
-#     return render(request, 'main_app/home.html', {'potentialmatches': potentialmatches})
+   return render(request, 'main_app/dateideas_list.html')
 
 #Date ideas list and details
 class DateIdeaList(LoginRequiredMixin, ListView):

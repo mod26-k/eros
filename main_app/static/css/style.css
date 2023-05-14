@@ -4,12 +4,12 @@
   color: white;
   width: 150px !important;
 }
-/* 
-form input[type="submit"]#confirm-delete-btn {
-  background-color: red;
+
+button {
+background-color: red;
   color: white;
   width: 150px !important;
-} */
+}
 
 body {
   display: flex;
@@ -23,14 +23,6 @@ h1 {
   font-family: 'Rubik Mono One', sans-serif;
   color: red;
   text-align: left;
-}
-  
-.btn {
-  background-color: red;
-  color: white;
-  width: 100px;
-  justify-content: center;
-  margin: 0 auto;
 }
 
 .logo {
@@ -141,4 +133,15 @@ p {
 
 .date-idea-user-link {
   color: red;
+}
+
+
+/* user details columns */
+@media (min-width: 600px) {
+  #profile {
+    width: 30%;
+  }
+  #matches {
+    width: 30%;
+  }
 }

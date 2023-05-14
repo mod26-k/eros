@@ -1,73 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Welcome, {{ request.user.profile.name }}</h1>
-
-<div class = "card-panel">
-        <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-            {% csrf_token %}
-            <input type="file" name="photo-file">
-            <br><br>
-            <button type="submit" class="btn">Upload Photo</button>
-        </form>
-        {% for photo in user.pfp_set.all %}
-            <img class="responsive-img card-panel" src="{{photo.url}}">
-        {% endfor %}
-</div>
+<h1>Welcome, <br>{{ request.user.profile.name }}</h1>
 
 
-<div class="row">
-    <div class="col s6 col-offset-3">
+<div class="row" style="display: flex;">
+    <div id="profile" class="col s6">
         <div class="card">
-            <div class="card-content">
-                <h4>My Profile:</h4>
-                <p>Pronouns: {{ request.user.profile.pronouns }}</p>
-                <p>Age: {{ request.user.profile.age }}</p>
-                <p>Location: {{ request.user.profile.location }}</p>
-                <p>Occupation: {{ request.user.profile.occupation }}</p>
-                <p>Relationship Status: {{ request.user.profile.relationship_status }}</p>
-                <p>Height: {{ request.user.profile.height_feet }}'{{ request.user.profile.height_inches }}"</p>
-                <p>Zodiac Sign: {{ request.user.profile.zodiac_sign }}</p>
-                <p>Smoke: {{ request.user.profile.smoke }}</p>
-                <p>Drink: {{ request.user.profile.drink }}</p>
-                <p>Children: {{ request.user.profile.children }}</p>
-                <p>Religion: {{ request.user.profile.religion }}</p>
-                <p>Dealbreaker: {{ request.user.profile.dealbreaker }}</p>
-                <p>Fun Date Idea: {{ request.user.profile.fun_date_idea }}</p>
-            </div>
-            <!-- <div class="'card-action">
-                <p>update</p>
-                <p>delete?</p>
-            </div> -->
+             {% for photo in user.pfp_set.all %}
+                    <img class="responsive-img card-panel" src="{{photo.url}}">
+                {% endfor %}
+            <div class="card-panel">
+                <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                    {% csrf_token %}
+                    <input type="file" name="photo-file">
+                    <br><br>
+                    <button type="submit" class="btn">Upload Photo</button>
+                </form>
         </div>
+        
     </div>
 </div>
-
-
-<!-- <div class="row">
-    <div class="col s6 col-offset-3">
-        <h4>{{ request.user.profile.name }}'s Date Ideas</h4>
-         {% if request.user.profile.dateideas.count %}
-            {% for dateidea in request.user.profile.dateideas.all %}
-                <div class="card">
-                    <div class="card-content">
-                        {{ dateidea.restaurant }}
-                    </div>
-                </div>
-            {% endfor %}
-        {% else %}
-            <h4>No Date Ideas Yet</h4>
-        {% endif %}
-        <div class="'card-action">
-            <p>remove? for each</p>
-        </div>
-    </div>
-</div> -->
         
 
 <div class="row">
-    <div class="col s6 col-offset-3">
+    <div id="matches" class="col s12">
         <div class="card">
+            <div>
+                <div class="card-content">
+                    <h4>My Profile:</h4>
+                    <p>Pronouns: {{ request.user.profile.pronouns }}</p>
+                    <p>Age: {{ request.user.profile.age }}</p>
+                    <p>Location: {{ request.user.profile.location }}</p>
+                    <p>Occupation: {{ request.user.profile.occupation }}</p>
+                    <p>Relationship Status: {{ request.user.profile.relationship_status }}</p>
+                    <p>Height: {{ request.user.profile.height_feet }}'{{ request.user.profile.height_inches }}"</p>
+                    <p>Zodiac Sign: {{ request.user.profile.zodiac_sign }}</p>
+                    <p>Smoke: {{ request.user.profile.smoke }}</p>
+                    <p>Drink: {{ request.user.profile.drink }}</p>
+                    <p>Children: {{ request.user.profile.children }}</p>
+                    <p>Religion: {{ request.user.profile.religion }}</p>
+                    <p>Dealbreaker: {{ request.user.profile.dealbreaker }}</p>
+                    <p>Fun Date Idea: {{ request.user.profile.fun_date_idea }}</p>
+                </div>
+                <div class="card-action">
+                    <a class='delete-profile' href="{% url 'user_delete' user.pk %}">Delete Profile?</a>
+                </div>
+            </div>
             <div class="card-content">
                 <h4>Potential Matches</h4>
                 {% for match in potential_matches %}
@@ -76,11 +55,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="card-action">
-    <!-- <a href="{% url 'user_update' user.pk %}">Edit</a> -->
-    <a href="{% url 'user_delete' user.pk %}">Delete</a>
 </div>
 
 
