@@ -3,7 +3,6 @@
 
 ![](main_app/static/media/eros_transparent.png)
 
-# [LIVE DEMO HERE](https://eros.herokuapp.com/)
 
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
