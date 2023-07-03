@@ -18,7 +18,7 @@
 [![Visual Studio](https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label)](https://visualstudio.microsoft.com)
 ![Terminal](https://badgen.net/badge/icon/terminal?icon=terminal&label)
 
-#CURRENTLY EXPERIENCING ISSUES WITH CSS RENDERING -- ACTIVELY WORKING ON CORRECTING IT
+# CURRENTLY EXPERIENCING ISSUES WITH CSS RENDERING -- ACTIVELY WORKING ON CORRECTING IT
 
 # Introduction
 Eros is a dating app that allows users to create date ideas to share with other users. 
