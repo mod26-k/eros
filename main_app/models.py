@@ -11,7 +11,7 @@ class DateIdeas(models.Model):
     restaurant = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
-    meal = models.CharField(
+    meal = models.CharField(max_length=50,
         choices = (
             ('Brunch', 'Brunch'), ('Lunch', 'Lunch'), (
         'Dinner', 'Dinner')
@@ -44,6 +44,7 @@ class PotentialMatch(models.Model):
         return self.potential_match.username
 
 class Profile(models.Model):
+    
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     dateideas = models.ManyToManyField(DateIdeas)
     name = models.CharField(max_length = 50)
@@ -55,47 +56,47 @@ class Profile(models.Model):
     occupation = models.CharField(
         max_length = 50,
         )
-    relationship_status = models.CharField(
+    relationship_status = models.CharField(max_length = 200,
         choices = (
         ('Single', 'Single'), ('Separated', 'Separated'), ('Divorced', 'Divorced'), ('Widowed', 'Widowed'), ('Open Relationship', 'Open Relationship')
         ),
         default = 'Single',
     )
         
-    height_feet = models.CharField(
+    height_feet = models.CharField(max_length = 200,
         choices = (
             ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8','8'), ('9', '9'),
         ),
         default = '5'
     )
-    height_inches = models.CharField(
+    height_inches = models.CharField(max_length = 200,
         choices = (
             ('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8','8'), ('9', '9'), ('10', '10'), ('11', '11'),
         ),
         default = '0'
     )
-    zodiac_sign = models.CharField(
+    zodiac_sign = models.CharField(max_length = 200,
         choices = (
         ('Aries', 'Aries'), ('Taurus', 'Taurus'), ('Gemini', 'Gemini'), ('Cancer', 'Cancer'), ('Leo', 'Leo'), ('Virgo', 'Virgo'), ('Libra', 'Libra'), ('Scorpio', 'Scorpio'), ('Sagittarius', 'Sagittarius'), ('Capricorn', 'Capricorn'), ('Aquarius', 'Aquarius'), ('Pisces', 'Pisces'),
         ),
         null=True,
         blank=True,
     )
-    smoke = models.CharField(
+    smoke = models.CharField(max_length = 200,
         choices = (
             ('Yes', 'Yes'), ('No', 'No'), ('Occasionally', 'Occasionally')
         ),
         null=True,
         blank=True,
     )
-    drink = models.CharField(
+    drink = models.CharField(max_length = 200,
         choices = (
             ('Yes', 'Yes'), ('No', 'No'), ('Occasionally', 'Occasionally')
         ),
         null=True,
         blank=True,
     )
-    children = models.CharField(
+    children = models.CharField(max_length = 200,
         choices = (
             ('Yes', 'Yes'), ('No', 'No')
         ),
