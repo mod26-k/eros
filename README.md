@@ -50,7 +50,6 @@ All of the existing date ideas are listed here. Clicking on the date idea opens 
 
 
 ## Next Steps
-1. Resolve CSS inconsistencies between my local app and deployed app
-2. Implement an api that allows users to select date locations from a map
-3. Allow users to swipe and actually match with each other
-4. Implement a chat function so users may chat with each other
+1. Implement an api that allows users to select date locations from a map
+2. Allow users to swipe and actually match with each other
+3. Implement a chat function so users may chat with each other
